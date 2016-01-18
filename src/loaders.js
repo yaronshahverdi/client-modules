@@ -13,7 +13,7 @@ const SCSS_SERVER = `${CSS_SERVER_PREFIX}${SCSS_OPTIONS}`;
 const CSS_CLIENT = `${CSS_CLIENT_PREFIX}${CSS_OPTIONS}`;
 const CSS_SERVER = `${CSS_SERVER_PREFIX}${CSS_OPTIONS}`;
 
-let loader = function(options) {
+export let loader = function(options) {
   return (opts) => _.extend({}, options, opts);
 };
 
