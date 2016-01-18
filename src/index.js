@@ -1,2 +1,2 @@
 
-export * from './loaders';
+export default from './loaders';
