@@ -1,2 +1,8 @@
 
-export loaders, { loader } from './loaders';
+const loaders = require('./loaders');
+const loader = require('./libs/loader');
+
+module.exports = {
+  loaders,
+  loader
+}
