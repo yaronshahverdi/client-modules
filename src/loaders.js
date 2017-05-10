@@ -85,6 +85,7 @@ let loaders = {
         {
           loader: 'css-loader',
           options: {
+            modules: true,
             sourceMap: SOURCEMAPS,
             localIdentName: CSS_MODULE_IDENT
           }
