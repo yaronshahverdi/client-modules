@@ -1,6 +1,8 @@
-const loader = (options) => {
-  return (opts) => {
-    return Object.assign({}, options, opts);
+const merge = require('webpack-merge');
+
+const loader = (config) => {
+  return (...configs) => {
+    return merge(config, configs);
   };
 };
 
