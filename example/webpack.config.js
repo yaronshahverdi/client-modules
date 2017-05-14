@@ -1,10 +1,10 @@
 
 const { createConfig } = require('../src');
 
-module.exports = createConfig({
-  rootDirectory: __dirname // required
-})
-.common()
-.dev()
-.extract()
-.toConfig();
+module.exports = createConfig()
+  .common({
+    context: __dirname
+  })
+  .dev()
+  .extract()
+  .toConfig();

@@ -4,8 +4,6 @@
   "description": "Config files for webpack",
   "main": "src/index.js",
   "scripts": {
-    "compile": "babel -sd dist/ src/",
-    "preversion": "npm run compile",
     "test": "jest",
     "test-watch": "jest --watch",
     "example": "webpack --config=./example/webpack.config.js",

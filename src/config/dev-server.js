@@ -9,6 +9,10 @@ const devServerConfig = (options) => {
   } = options;
 
   return merge.smart({
+    output: {
+      publicPath: publicPath || `http://localhost:${port}/dist/`
+    },
+
     devServer: {
       port,
       publicPath: publicPath || `http://localhost:${port}/dist/`,

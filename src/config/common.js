@@ -5,16 +5,16 @@ const ENV = require('../lib/env');
 
 const DEV = (ENV !== 'production');
 
-const commonConfig = (options = {}, globalOptions = {}) => {
+const commonConfig = (options = {}) => {
 
   return {
-    context: globalOptions.rootDirectory,
+    context: options.context,
 
-    entry: path.resolve(globalOptions.rootDirectory, 'src/main.js'),
+    entry: path.resolve(options.context, 'src/main.js'),
 
     output: {
       filename: '[name].js',
-      path: path.resolve(globalOptions.rootDirectory, 'dist')
+      path: path.resolve(options.context, 'dist')
     },
 
     module: {
