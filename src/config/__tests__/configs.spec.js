@@ -9,6 +9,6 @@ describe('Configs: ', () => {
       });
     });
     expect(allConfigs).toMatchSnapshot();
-  })
+  });
 
 });
