@@ -71,7 +71,7 @@
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"style":"styles__style___1utiB"};
+module.exports = {"style":"styles__style___UdwLs"};
 
 /***/ }),
 /* 1 */

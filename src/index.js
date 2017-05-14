@@ -2,11 +2,14 @@ const merge = require('webpack-merge');
 const configs = require('./config');
 
 class WebpackConfig {
-  constructor() {
+  constructor(options = {}) {
+    if (!options.rootDirectory) {
+      throw new Error('Must provide rootDirectory to WebpackConfig');
+    }
     this._configs = Object.assign({}, configs);
     Object.keys(this._configs).forEach(c => {
-      this[c] = (options) => {
-        this.merge(this._configs[c](options));
+      this[c] = (opts) => {
+        this.merge(this._configs[c](opts, options));
         return this;
       };
     });
