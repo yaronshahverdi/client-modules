@@ -10,10 +10,10 @@ Shared webpack configurator
 
 import { createConfig } from '@codecademy/webpack-config';
 
-module.exports = createConfig({
-  rootDirectory: __dirname // required
-})
-  .common()
+module.exports = createConfig()
+  .common({
+    context: __dirname // required
+  })
   .merge({
     entry: 'app.js' // defaults to main.js
     output: {
@@ -21,7 +21,7 @@ module.exports = createConfig({
       path: path.resolve(__dirname, 'public') // defaults to /dist
     }
   })
-  .toConfig()
+  .toConfig();
 ```
 
 ### Dev server config
@@ -32,10 +32,10 @@ module.exports = createConfig({
 
 import { createConfig } from '@codecademy/webpack-config';
 
-module.exports = createConfig({
-  rootDirectory: __dirname // required
-})
-  .common()
+module.exports = createConfig()
+  .common({
+    context: __dirname // required
+  })
   .merge({
     entry: 'app.js' // defaults to main.js
     output: {
