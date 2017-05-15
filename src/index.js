@@ -26,6 +26,35 @@ class WebpackConfig {
     return this;
   }
 
+  mergeLoader(loaderObject = {}) {
+    if (!loaderObject.test) {
+      throw new Error('mergeLoader requires the test property to match loaders');
+    }
+
+    const mergeableLoader = {
+      module: {
+        rules: [
+          Object.assign({}, loaderObject)
+        ]
+      }
+    };
+
+    this.value = merge({
+      customizeArray(a, b, key) {
+        if (key === 'module.rules') {
+          return a.map((rule) => {
+            const match = b.find((r) => String(r.test) === String(rule.test));
+            if (match) return merge(rule, match);
+            return rule;
+          });
+        }
+        return undefined;
+      }
+    })(this.value, mergeableLoader);
+
+    return this;
+  }
+
   toConfig() {
     return this.value;
   }

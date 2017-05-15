@@ -2,19 +2,32 @@ const { createConfig } = require('../index');
 
 describe('createConfig', () => {
 
-  it('takes an array of configs', () => {
-    expect(createConfig(['common', 'dev', 'dev-server'], {
-      context: __dirname
-    })()).toMatchSnapshot();
+  it('merges custom config', () => {
+    const testConfig = createConfig()
+      .common({
+        context: __dirname
+      })
+      .merge({
+        entry: 'my-file.js'
+      })
+      .toConfig();
+
+    expect(testConfig.entry).toEqual('my-file.js');
   });
 
-  it('merges custom config', () => {
-    const testConfig = createConfig(['common'], {
-      context: __dirname
-    })({
-      entry: 'my-file.js'
-    });
-    expect(testConfig.entry).toEqual('my-file.js');
+  it('merges loaders', () => {
+    const testConfig = createConfig()
+      .common({
+        context: __dirname
+      })
+      .mergeLoader({
+        test: /\.js?$/,
+        loader: 'babel-loader',
+        include: [__dirname]
+      })
+      .toConfig();
+
+    expect(testConfig).toMatchSnapshot();
   });
 
 });

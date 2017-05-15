@@ -1,244 +1,31 @@
-exports[`createConfig dedupes plugins 1`] = `
-Object {
-  "entry": "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__/src/main.js",
-  "module": Object {
-    "rules": Array [
-      Object {
-        "loader": "babel-loader",
-        "options": Object {
-          "cacheDirectory": true,
-        },
-        "test": /\\.js?$/,
-      },
-      Object {
-        "loader": "file-loader",
-        "test": /\\.jpe?g$|\\.gif$|\\.png$|\\.svg$|\\.woff$|\\.ttf$|\\.eot|\\.wav$|\\.mp3$/,
-      },
-      Object {
-        "test": /\\.css?$/,
-        "use": Array [
-          Object {
-            "loader": "/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/extract-text-webpack-plugin/loader.js",
-            "options": Object {
-              "omit": 1,
-              "remove": true,
-            },
-          },
-          Object {
-            "loader": "style-loader",
-          },
-          Object {
-            "loader": "css-loader",
-            "options": Object {
-              "importLoaders": 1,
-              "localIdentName": "[name]__[local]___[hash:base64:5]",
-              "sourceMap": true,
-            },
-          },
-          Object {
-            "loader": "postcss-loader",
-            "options": Object {
-              "plugins": [Function],
-            },
-          },
-        ],
-      },
-      Object {
-        "test": /\\.scss?$/,
-        "use": Array [
-          Object {
-            "loader": "/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/extract-text-webpack-plugin/loader.js",
-            "options": Object {
-              "omit": 1,
-              "remove": true,
-            },
-          },
-          Object {
-            "loader": "style-loader",
-          },
-          Object {
-            "loader": "css-loader",
-            "options": Object {
-              "importLoaders": 1,
-              "localIdentName": "[name]__[local]___[hash:base64:5]",
-              "modules": true,
-              "sourceMap": true,
-            },
-          },
-          Object {
-            "loader": "postcss-loader",
-            "options": Object {
-              "plugins": [Function],
-            },
-          },
-          Object {
-            "loader": "sass-loader",
-            "options": Object {
-              "sourceMap": true,
-            },
-          },
-        ],
-      },
-    ],
-  },
-  "output": Object {
-    "filename": "[name].js",
-    "path": "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__/dist",
-  },
-  "plugins": Array [
-    DefinePlugin {
-      "definitions": Object {
-        "__DEV__": true,
-        "process.env.NODE_ENV": "\"development\"",
-      },
-    },
-    ContextReplacementPlugin {
-      "newContentRecursive": undefined,
-      "newContentRegExp": /en/,
-      "newContentResource": undefined,
-      "resourceRegExp": /moment[\\/\\\\]locale$/,
-    },
-    ExtractTextPlugin {
-      "filename": "[name].css",
-      "id": 1,
-      "options": Object {
-        "allChunks": false,
-      },
-    },
-    ExtractTextPlugin {
-      "filename": "[name].css",
-      "id": 2,
-      "options": Object {
-        "allChunks": true,
-      },
-    },
-  ],
-  "resolve": Object {
-    "extensions": Array [
-      ".webpack.js",
-      ".web.js",
-      ".js",
-      ".scss",
-      ".json",
-    ],
-    "modules": Array [
-      "node_modules",
-      "node_modules/@codecademy",
-    ],
-  },
-}
-`;
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createConfig takes an array of configs 1`] = `
+exports[`createConfig merges loaders 1`] = `
 Object {
-  "devServer": Object {
-    "headers": Object {
-      "Access-Control-Allow-Origin": "*",
-    },
-    "port": 3808,
-    "publicPath": "http://localhost:3808/dist/",
-    "stats": Object {
-      "assets": false,
-      "chunkModules": false,
-      "chunks": false,
-      "colors": true,
-      "hash": false,
-      "timings": true,
-      "version": false,
-    },
-  },
-  "devtool": "#cheap-source-map",
+  "context": "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__",
   "entry": "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__/src/main.js",
   "module": Object {
     "rules": Array [
       Object {
+        "include": Array [
+          "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__",
+        ],
         "loader": "babel-loader",
         "options": Object {
           "cacheDirectory": true,
-        },
-        "test": /\\.js?$/,
-      },
-      Object {
-        "loader": "file-loader",
-        "test": /\\.jpe?g$|\\.gif$|\\.png$|\\.svg$|\\.woff$|\\.ttf$|\\.eot|\\.wav$|\\.mp3$/,
-      },
-      Object {
-        "test": /\\.css?$/,
-        "use": Array [
-          Object {
-            "loader": "style-loader",
-          },
-          Object {
-            "loader": "css-loader",
-            "options": Object {
-              "importLoaders": 1,
-              "localIdentName": "[name]__[local]___[hash:base64:5]",
-              "sourceMap": true,
-            },
-          },
-          Object {
-            "loader": "postcss-loader",
-            "options": Object {
-              "plugins": [Function],
-            },
-          },
-        ],
-      },
-      Object {
-        "test": /\\.scss?$/,
-        "use": Array [
-          Object {
-            "loader": "style-loader",
-          },
-          Object {
-            "loader": "css-loader",
-            "options": Object {
-              "importLoaders": 1,
-              "localIdentName": "[name]__[local]___[hash:base64:5]",
-              "modules": true,
-              "sourceMap": true,
-            },
-          },
-          Object {
-            "loader": "postcss-loader",
-            "options": Object {
-              "plugins": [Function],
-            },
-          },
-          Object {
-            "loader": "sass-loader",
-            "options": Object {
-              "sourceMap": true,
-            },
-          },
-        ],
-      },
-      Object {
-        "loader": "babel-loader",
-        "options": Object {
-          "plugins": Array [
-            "react-transform",
-            Object {
-              "transforms": Array [
-                Object {
-                  "imports": Array [
-                    "react",
-                  ],
-                  "locals": Array [
-                    "module",
-                  ],
-                  "transform": "react-transform-hmr",
-                },
-              ],
-            },
+          "presets": Array [
+            "codecademy",
           ],
         },
+        "test": /\\\\\\.js\\?\\$/,
+      },
+      Object {
+        "loader": "file-loader",
+        "test": /\\\\\\.jpe\\?g\\$\\|\\\\\\.gif\\$\\|\\\\\\.png\\$\\|\\\\\\.svg\\$\\|\\\\\\.woff\\$\\|\\\\\\.ttf\\$\\|\\\\\\.eot\\|\\\\\\.wav\\$\\|\\\\\\.mp3\\$/,
       },
     ],
   },
   "output": Object {
-    "devtoolFallbackModuleFilenameTemplate": "[resourcePath]?[hash]",
-    "devtoolModuleFilenameTemplate": "[absolute-resource-path]",
     "filename": "[name].js",
     "path": "/Users/jake/Sites/Codecademy/npm/webpack-config/src/__tests__/dist",
   },
@@ -246,16 +33,15 @@ Object {
     DefinePlugin {
       "definitions": Object {
         "__DEV__": true,
-        "process.env.NODE_ENV": "\"development\"",
+        "process.env.NODE_ENV": "\\"development\\"",
       },
     },
     ContextReplacementPlugin {
       "newContentRecursive": undefined,
       "newContentRegExp": /en/,
       "newContentResource": undefined,
-      "resourceRegExp": /moment[\\/\\\\]locale$/,
+      "resourceRegExp": /moment\\[\\\\/\\\\\\\\\\]locale\\$/,
     },
-    NoEmitOnErrorsPlugin {},
   ],
   "resolve": Object {
     "extensions": Array [
@@ -263,6 +49,7 @@ Object {
       ".web.js",
       ".js",
       ".scss",
+      ".css",
       ".json",
     ],
     "modules": Array [
