@@ -33,9 +33,6 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -63,30 +60,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-module.exports = {"style":"styles__style___UdwLs"};
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _styles = __webpack_require__(0);
-
-var _styles2 = _interopRequireDefault(_styles);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-console.log('hello world');
+throw new Error("Module build failed: Error: Couldn't find preset \"es2015\" relative to directory \"/Users/jake\"\n    at /Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/options/option-manager.js:293:19\n    at Array.map (native)\n    at OptionManager.resolvePresets (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/options/option-manager.js:275:20)\n    at OptionManager.mergePresets (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/options/option-manager.js:264:10)\n    at OptionManager.mergeOptions (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/options/option-manager.js:249:14)\n    at OptionManager.init (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/options/option-manager.js:368:12)\n    at File.initOptions (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/index.js:212:65)\n    at new File (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/file/index.js:135:24)\n    at Pipeline.transform (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-core/lib/transformation/pipeline.js:46:16)\n    at transpile (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-loader/lib/index.js:49:20)\n    at /Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-loader/lib/fs-cache.js:118:18\n    at ReadFileContext.callback (/Users/jake/Sites/Codecademy/npm/webpack-config/node_modules/babel-loader/lib/fs-cache.js:31:21)\n    at FSReqWrap.readFileAfterOpen [as oncomplete] (fs.js:365:13)");
 
 /***/ })
 /******/ ]);
