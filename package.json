@@ -24,7 +24,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "lerna": "^2.8.0"
+    "lerna": "^2.9.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.0",
