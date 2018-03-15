@@ -1,0 +1,66 @@
+{
+  "name": "@codecademy/webpack-config",
+  "version": "2.3.7",
+  "description": "Config files for webpack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "example": "webpack --profile --config=./example/webpack.config.js",
+    "example-prod": "NODE_ENV=production webpack --profile --config=./example/webpack.config.js",
+    "example-dev": "webpack-dev-server --config=./example/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyzacInc/webpack-config"
+  },
+  "author": "codecademy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyzacInc/webpack-config"
+  },
+  "homepage": "https://github.com/RyzacInc/webpack-config",
+  "peerDependencies": {
+    "babel-core": ">= 6.0 < 7.0",
+    "babel-loader": ">= 7.0 < 8.0",
+    "babel-plugin-react-transform": ">= 2.0",
+    "babel-preset-codecademy": ">= 1.0",
+    "css-loader": ">= 0.28.1",
+    "file-loader": ">= 0.11.1",
+    "json-loader": ">= 0.5.4",
+    "node-sass": ">= 4.5.2",
+    "postcss-loader": ">= 2.0.5",
+    "sass-loader": ">= 6.0.5",
+    "style-loader": ">= 0.17.0",
+    "webpack": ">= 2.0 < 4.0",
+    "webpack-dev-server": ">= 2.0 < 4.0"
+  },
+  "devDependencies": {
+    "babel-core": ">= 6.0 < 7.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": ">= 7.0 < 8.0",
+    "babel-plugin-react-transform": ">= 2.0",
+    "babel-preset-codecademy": ">= 1.0",
+    "css-loader": ">= 0.28.1",
+    "eslint": "3.17.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.4.1",
+    "file-loader": ">= 0.11.1",
+    "jest": "20.0.1",
+    "json-loader": ">= 0.5.4",
+    "node-sass": ">= 4.5.2",
+    "postcss-loader": ">= 2.0.5",
+    "sass-loader": ">= 6.0.5",
+    "style-loader": ">= 0.17.0",
+    "webpack": ">= 2.0 < 4.0",
+    "webpack-dev-server": ">= 2.0 < 4.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "uglifyjs-webpack-plugin": ">= 1.1.6",
+    "webpack-merge": "^4.1.0"
+  }
+}
