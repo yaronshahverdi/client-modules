@@ -1,5 +1,5 @@
 const merge = require('webpack-merge');
-const configs = require('./src/config');
+const configs = require('./config');
 
 const modify = (initialConfig, { target, dev }, webpack) => {
   let config = initialConfig;
