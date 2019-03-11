@@ -38,6 +38,7 @@
     "babel-preset-codecademy": "2.1.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
+    "color": "^3.1.0",
     "css-loader": ">= 0.28.10",
     "file-loader": ">= 1.1.11",
     "invariant": "^2.2.0",

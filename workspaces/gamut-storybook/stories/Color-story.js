@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import color from 'color';
 import {
   colors,
   deprecatedColors,
@@ -14,6 +15,19 @@ const infoOptions = {
   inline: true,
   source: false,
   propTables: false,
+};
+
+const createSwatchData = (sassVariableName, hexcode) => {
+  return {
+    name: sassVariableName,
+    hex: hexcode,
+    rgb: color(hexcode)
+      .rgb()
+      .string(),
+    hsl: color(hexcode)
+      .hsl()
+      .string(),
+  };
 };
 
 const parseCamelCase = string =>
@@ -37,9 +51,13 @@ const renderSwatch = (sassVariableName, hexcode) => {
     >
       <div className={s.swatch} style={{ backgroundColor: hexcode }} />
       <div>
-        <span className={s.name}>{sassVariableName}</span>
-        <br />
-        <span className={s.hexcode}>{hexcode}</span>
+        <div className={s.name}>{sassVariableName}</div>
+        <div className={s.hexcode}>{hexcode}</div>
+        <div className={s.hexcode}>
+          {color(hexcode)
+            .hsl()
+            .string()}
+        </div>
       </div>
     </Container>
   );
