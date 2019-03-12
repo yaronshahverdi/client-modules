@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { flatten } from 'lodash';
 import color from 'color';
 import {
   colors,
@@ -17,19 +18,6 @@ const infoOptions = {
   propTables: false,
 };
 
-const createSwatchData = (sassVariableName, hexcode) => {
-  return {
-    name: sassVariableName,
-    hex: hexcode,
-    rgb: color(hexcode)
-      .rgb()
-      .string(),
-    hsl: color(hexcode)
-      .hsl()
-      .string(),
-  };
-};
-
 const parseCamelCase = string =>
   string.replace(/([a-zA-Z])(?=[A-Z0-9])/g, '$1-').toLowerCase();
 
@@ -41,6 +29,48 @@ const getSassVariableName = (variablePrefix, variableSuffix) => {
   }
   return `$color-${parseCamelCase(variableSuffix)}`;
 };
+
+const legacyColorMapping = {
+  mint: 'green',
+  ccBlue: 'blue',
+  grey: 'gray',
+  royalBlue: 'purple',
+};
+
+const createSwatchData = (
+  sassVariableName,
+  hexcode,
+  colorName,
+  colorNumber
+) => {
+  return {
+    name: sassVariableName,
+    sort: `${legacyColorMapping[colorName] || colorName}-${colorNumber}`,
+    colorName: legacyColorMapping[colorName] || colorName,
+    colorNumber: colorNumber,
+    hex: color(hexcode).hex(),
+    rgb: color(hexcode)
+      .rgb()
+      .string(),
+    hsl: color(hexcode)
+      .hsl()
+      .string(),
+  };
+};
+
+const getSwatchesData = (data, variablePrefix, name) =>
+  Object.keys(data).map(variableSuffix => {
+    const sassVariableName = getSassVariableName(
+      variablePrefix,
+      variableSuffix
+    );
+
+    const hexcode =
+      data[variableSuffix] === 'whitesmoke' ? '#f5f5f5' : data[variableSuffix];
+    const colorName = name;
+    const colorNumber = variableSuffix;
+    return createSwatchData(sassVariableName, hexcode, colorName, colorNumber);
+  });
 
 const renderSwatch = (sassVariableName, hexcode) => {
   return (
@@ -91,17 +121,17 @@ stories.add(
     return (
       <Container>
         {Object.keys(colors)
-          .filter(color => !Object.keys(base).includes(color))
-          .map(color => (
-            <div key={color}>
-              <h2 className={s.heading}>{parseCamelCase(`color-${color}`)}</h2>
-              {renderSwatches(colors[color], `color-${color}`)}
+          .filter(c => !Object.keys(base).includes(color))
+          .map(c => (
+            <div key={c}>
+              <h2 className={s.heading}>{parseCamelCase(`color-${c}`)}</h2>
+              {renderSwatches(colors[c], `color-${c}`)}
             </div>
           ))}
-        {Object.keys(base).map(color => (
-          <div key={color}>
-            <h2 className={s.heading}>{parseCamelCase(`color-${color}`)}</h2>
-            {renderSwatch(`color-${parseCamelCase(color)}`, base[color])}
+        {Object.keys(base).map(c => (
+          <div key={c}>
+            <h2 className={s.heading}>{parseCamelCase(`color-${c}`)}</h2>
+            {renderSwatch(`color-${parseCamelCase(c)}`, base[c])}
           </div>
         ))}
       </Container>
@@ -129,14 +159,14 @@ stories.add(
         <h2 className={s.heading}>deprecated gamut base colors</h2>
         {renderSwatches(deprecatedGamutColors.base, 'deprecated-gamut')}
       </div>
-      {Object.keys(deprecatedGamutColors.swatches).map(color => (
-        <div key={color}>
+      {Object.keys(deprecatedGamutColors.swatches).map(c => (
+        <div key={c}>
           <h2 className={s.heading}>
-            {parseCamelCase(`deprecated-gamut-${color}`)}
+            {parseCamelCase(`deprecated-gamut-${c}`)}
           </h2>
           {renderSwatches(
-            deprecatedGamutColors.swatches[color],
-            `deprecated-gamut-${color}`
+            deprecatedGamutColors.swatches[c],
+            `deprecated-gamut-${c}`
           )}
         </div>
       ))}
@@ -153,12 +183,12 @@ stories.add(
         <h2 className={s.heading}>deprecated portal base colors</h2>
         {renderSwatches(deprecatedColors.portal, 'deprecated')}
       </div>
-      {Object.keys(deprecatedColors.swatches).map(color => (
-        <div key={color}>
-          <h2 className={s.heading}>{parseCamelCase(color)}</h2>
+      {Object.keys(deprecatedColors.swatches).map(c => (
+        <div key={c}>
+          <h2 className={s.heading}>{parseCamelCase(c)}</h2>
           {renderSwatches(
-            deprecatedColors.swatches[color],
-            `deprecated-swatches-${color}`
+            deprecatedColors.swatches[c],
+            `deprecated-swatches-${c}`
           )}
         </div>
       ))}
@@ -183,6 +213,83 @@ stories.add(
         )}
         {renderSwatches(platformRest, 'deprecated-swatches-code')}
       </div>
+    );
+  },
+  infoOptions
+);
+
+stories.add(
+  'All (combined)',
+  () => {
+    const {
+      black: baseBlack,
+      white: baseWhite,
+      beige: baseBeige,
+      royalBlue: baseRoyalBlue,
+      ...mainColors
+    } = colors;
+    const allColors = flatten([
+      ...Object.keys(mainColors).map(c =>
+        getSwatchesData(colors[c], `color-${c}`, c)
+      ),
+      // ...getSwatchesData(deprecatedColors.portal, 'deprecated'),
+      // ...Object.keys(deprecatedColors.swatches).map(c =>
+      //   getSwatchesData(
+      //     deprecatedColors.swatches[c],
+      //     `deprecated-swatches-${c}`,
+      //     c
+      //   )
+      // ),
+      // ...getSwatchesData(deprecatedGamutColors.base, 'deprecated-gamut'),
+      ...Object.keys(deprecatedGamutColors.swatches).map(c =>
+        getSwatchesData(
+          deprecatedGamutColors.swatches[c],
+          `deprecated-gamut-${c}`,
+          c
+        )
+      ),
+    ]).sort((a, b) => {
+      return `${a.sort}`.localeCompare(b.sort);
+    });
+
+    // .sort((a, b) => {
+    //   const hslA = chroma(a.hex).hsl();
+    //   const hslB = chroma(b.hex).hsl();
+    //   let hueA = Math.round(hslA[0]);
+    //   let hueB = Math.round(hslB[0]);
+    //   if (Number.isNaN(hueA)) hueA = 0;
+    //   if (Number.isNaN(hueB)) hueB = 0;
+    //   if (hueA - hueB === 0) {
+    //     return hslA[2] - hslB[2];
+    //   }
+    //   return hueA - hueB;
+    // });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th className={s.tableHeading}>Swatch</th>
+            <th className={s.tableHeading}>Name</th>
+            <th className={s.tableHeading}>HEX</th>
+            <th className={s.tableHeading}>RGB</th>
+            <th className={s.tableHeading}>HSL</th>
+            <th className={s.tableHeading}>Sort Key</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allColors.map(c => (
+            <tr key={c.name}>
+              <td className={s.tableItem} style={{ background: c.hex }} />
+              <td className={s.tableItem}>{c.name}</td>
+              <td className={s.tableItem}>{c.hex}</td>
+              <td className={s.tableItem}>{c.rgb}</td>
+              <td className={s.tableItem}>{c.hsl}</td>
+              <td className={s.tableItem}>{c.sort}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   },
   infoOptions

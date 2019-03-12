@@ -41,3 +41,12 @@ $border-color: #333;
   font-weight: bold;
   font-size: 13px;
 }
+
+.tableHeading {
+  padding: 0 1rem;
+}
+.tableItem {
+  white-space: nowrap;
+  font-family: monospace;
+  padding: 0 1rem;
+}
