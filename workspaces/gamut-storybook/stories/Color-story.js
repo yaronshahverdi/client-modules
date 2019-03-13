@@ -106,7 +106,16 @@ const renderSwatches = (data, variablePrefix) =>
     return renderSwatch(sassVariableName, hexcode);
   });
 
-const stories = storiesOf('Visuals/Colors', module);
+stories.add(
+  'Brand colors',
+  () => (
+    <div>
+      <h2 className={s.heading}>brand colors</h2>
+      {renderSwatches(brandColors, 'Brand')}
+    </div>
+  ),
+  infoOptions
+);
 
 stories.add(
   'Colors',
