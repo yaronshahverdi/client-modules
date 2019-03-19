@@ -181,12 +181,12 @@ workflows:
           context: org-global
           requires:
             - checkout_code
-    triggers:
-      - schedule:
-          # Runs every monday
-          cron: "0 0 * * 1"
-          filters:
-            branches:
-              only:
-                - master
+    # triggers:
+    #   - schedule:
+    #       # Runs every monday
+    #       cron: "0 0 * * 1"
+    #       filters:
+    #         branches:
+    #           only:
+    #             - master
 
