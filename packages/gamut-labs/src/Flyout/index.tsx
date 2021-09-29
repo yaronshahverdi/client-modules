@@ -25,9 +25,7 @@ const drawerOpenVariants = variant({
 
 interface FlyoutStyleProps extends StyleProps<typeof drawerOpenVariants> {}
 
-const DrawerBase = styled(motion.custom(Box))<FlyoutStyleProps>(
-  drawerOpenVariants
-);
+const DrawerBase = styled(motion(Box))<FlyoutStyleProps>(drawerOpenVariants);
 
 const openWidth = 30;
 
